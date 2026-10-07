@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atacama — The Driest Desert</title>
+<style>
+:root{--bg:#0b1026;--bg2:#1b1f45;--sf:rgba(255,255,255,.07);--text:#f1ecff;--mut:#a9a6cf;--a:#ff7a45;--b:#ffc36b;--c:#6fd3c9;--bd:rgba(255,255,255,.14);--ok:#5fe0a0;--bad:#ff6b73;--star:1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#fbf3ea;--bg2:#f2d8c2;--sf:rgba(255,255,255,.75);--text:#2a1a2e;--mut:#6d5a6f;--a:#c9481c;--b:#b8741a;--c:#17806f;--bd:rgba(60,30,30,.15);--star:0}}
+:root[data-theme="light"]{--bg:#fbf3ea;--bg2:#f2d8c2;--sf:rgba(255,255,255,.75);--text:#2a1a2e;--mut:#6d5a6f;--a:#c9481c;--b:#b8741a;--c:#17806f;--bd:rgba(60,30,30,.15);--star:0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px;background:var(--bg)}
+body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:var(--star)}
+main,header,nav{position:relative;z-index:1}
+h1,h2,h3{margin:0 0 .4em;line-height:1.1}
+button{font:inherit;color:inherit;cursor:pointer}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:2rem 1.2rem 9rem;text-align:left;max-width:640px;margin:auto}
+.hero small{letter-spacing:.2em;text-transform:uppercase;color:var(--b);font-weight:700;font-size:.7rem}
+.hero h1{font-size:clamp(3rem,16vw,5.5rem);letter-spacing:.04em;font-weight:200;background:linear-gradient(90deg,var(--b),var(--a));-webkit-background-clip:text;background-clip:text;color:transparent;margin:.2em 0}
+.hero p{color:var(--mut);max-width:30em}
+.hero .hint{margin-top:1.4rem;font-size:.8rem;color:var(--mut);animation:bob 2s infinite}@keyframes bob{50%{transform:translateY(6px)}}
+.mt{position:absolute;left:0;right:0;bottom:0;height:200px;width:100%;z-index:0;pointer-events:none}
+nav{position:sticky;top:env(safe-area-inset-top,0px);display:flex;gap:.35rem;padding:.55rem .8rem;overflow-x:auto;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--bd);z-index:20}
+nav a{flex:none;text-decoration:none;color:var(--mut);border:1px solid var(--bd);border-radius:99px;padding:.4rem .85rem;font-size:.8rem;font-weight:600}
+nav a.on{background:linear-gradient(90deg,var(--a),var(--b));color:#1a0d12;border-color:transparent}
+section{max-width:640px;margin:auto;padding:3rem 1.2rem 1rem}
+.k{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--a),var(--b));color:#1a0d12;font-weight:800;margin-bottom:.6rem}
+h2{font-size:1.9rem;font-weight:700}
+.lead{color:var(--mut);font-size:.95rem;margin:0 0 1rem}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:1rem;margin-top:.8rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.rv{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.2,.8,.3,1)}.rv.in{opacity:1;transform:none}
+.seg{display:flex;gap:.35rem;overflow-x:auto;padding-bottom:.4rem}
+.seg button{flex:none;background:var(--sf);border:1px solid var(--bd);border-radius:99px;padding:.45rem .9rem;font-size:.8rem}
+.seg .on{background:var(--c);color:#06201c;border-color:transparent;font-weight:700}
+.bar{margin:.7rem 0}.bar span{font-size:.78rem;color:var(--mut);display:flex;justify-content:space-between}
+.bar i{display:block;height:12px;border-radius:99px;background:var(--sf);margin-top:.25rem;overflow:hidden}
+.bar b{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--c),var(--a));transition:width 1.4s cubic-bezier(.2,.8,.3,1)}
+.in .bar b{width:var(--w)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.7rem}
+.two div{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:.8rem;text-align:center}
+.two b{display:block;font-size:1.9rem;color:var(--b)}.two small{color:var(--mut)}
+.car{display:flex;gap:.7rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.3rem 1.2rem 1rem;margin:0 -1.2rem}
+.car button{flex:none;width:72%;max-width:250px;scroll-snap-align:center;text-align:left;background:var(--sf);border:1px solid var(--bd);border-radius:20px;padding:1rem;min-height:170px}
+.car .e{font-size:2.4rem;display:block}.car b{display:block;margin:.3rem 0}.car p{margin:0;font-size:.82rem;color:var(--mut)}
+.car .h{display:none}.car .on{border-color:var(--c)}.car .on .h{display:block}.car .on .s{display:none}
+.tl{border-left:2px solid var(--bd);margin-left:.5rem;padding-left:1rem}
+.tl button{display:block;text-align:left;width:100%;background:none;border:0;padding:.5rem 0 .5rem;position:relative}
+.tl button::before{content:"";position:absolute;left:-1.37rem;top:.85rem;width:12px;height:12px;border-radius:50%;background:var(--a);box-shadow:0 0 0 4px var(--bg)}
+.tl small{color:var(--b);font-weight:700;font-size:.72rem}.tl b{display:block}.tl p{display:none;margin:.2rem 0 0;font-size:.85rem;color:var(--mut)}.tl .on p{display:block}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.g2 div{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:.8rem;font-size:.8rem;color:var(--mut)}.g2 b{display:block;color:var(--text);font-size:.9rem}
+.risk{display:flex;gap:.7rem;margin-top:.6rem;padding:.8rem;align-items:flex-start;text-align:left;width:100%;border-radius:16px;background:var(--sf);border:1px solid var(--bd)}
+.risk .ic{font-size:1.5rem}.risk b{display:block;font-size:.92rem}.risk p{display:none;margin:.2rem 0 0;font-size:.82rem;color:var(--mut)}.risk.on p{display:block}
+.lv{height:5px;border-radius:9px;background:var(--bad);margin-top:.3rem}
+input[type=range]{width:100%;accent-color:var(--a)}
+.big{font-size:2.6rem;font-weight:800;color:var(--b)}
+.pk{display:flex;gap:.6rem;align-items:center;width:100%;text-align:left;background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:.7rem .8rem;margin-top:.45rem;font-size:.88rem}
+.pk i{width:22px;height:22px;border-radius:50%;border:2px solid var(--c);display:grid;place-items:center;color:transparent;font-style:normal;font-size:.7rem;flex:none}
+.pk.on i{background:var(--c);color:#06201c}
+.prog{height:8px;border-radius:9px;background:var(--sf);overflow:hidden;margin:.6rem 0}.prog b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c),var(--b));transition:width .4s}
+.opt{display:block;width:100%;text-align:left;background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:.65rem .85rem;margin-bottom:.4rem;font-size:.9rem}
+.opt.c{border-color:var(--ok);color:var(--ok)}.opt.w{border-color:var(--bad);color:var(--bad)}
+.cta{background:linear-gradient(90deg,var(--a),var(--b));color:#1a0d12;border:0;border-radius:99px;padding:.8rem 1.6rem;font-weight:800;margin-top:.6rem}
+footer{text-align:center;color:var(--mut);font-size:.75rem;padding:2.5rem 1rem 3rem}
+@media(prefers-reduced-motion:reduce){.rv{transition:none}.hero .hint{animation:none}}
+</style></head><body>
+<canvas id="sky"></canvas>
+<header class="hero">
+  <small>Deserts of the World · Group Project</small>
+  <h1>ATACAMA</h1>
+  <p>The driest non-polar desert on Earth, where some weather stations have recorded no rain for years, and the night sky is one of the clearest anywhere.</p>
+  <div class="hint">Scroll to explore ↓</div>
+  <svg class="mt" id="mts" viewBox="0 0 400 200" preserveAspectRatio="none"><path d="M0 200V110L60 70l45 40 50-60 60 80 55-45 60 65 70-50V200Z" fill="var(--a)" opacity=".35"/><path d="M0 200V150L50 110l60 50 70-70 70 80 60-50 90 60V200Z" fill="var(--bg2)" opacity=".9"/></svg>
+</header>
+<nav id="nv"><a href="#A" class="on">A · Location & Climate</a><a href="#B">B · Life</a><a href="#C">C · People</a><a href="#D">D · Survival</a><a href="#Q">Quiz</a></nav>
+<main>
+<section id="A">
+  <div class="k">A</div><h2>Location & Climate</h2>
+  <p class="lead rv">Atacama stretches about 1,000 km along the Pacific coast of northern Chile, between the Andes mountains in the east and the Chilean Coast Range in the west. Together they block almost all moisture, which is why it is so dry. It covers roughly 100,000 km² of plateau at about 2,000–4,000 m.</p>
+  <div class="card rv"><b>How much rain per year? (approx. mm)</b><div id="rain"></div></div>
+  <div class="card rv"><b>Landscapes</b><div class="seg" id="lt" style="margin-top:.5rem"></div><p class="lead" id="lb" style="margin:.5rem 0 0"></p></div>
+  <div class="card rv"><b>Day vs night</b><div class="seg" id="ct" style="margin-top:.5rem"></div><div class="two" id="cb"></div><p class="lead" style="margin:.6rem 0 0;font-size:.78rem">Temperatures are approximate. The thin, dry air cannot hold the day's heat.</p></div>
+</section>
+
+<section id="B">
+  <div class="k">B</div><h2>Flora & Fauna</h2>
+  <p class="lead rv">Swipe the cards sideways and tap one to see how it survives.</p>
+  <div class="car rv" id="an"></div>
+  <div class="car rv" id="pl"></div>
+</section>
+
+<section id="C">
+  <div class="k">C</div><h2>People & Lifestyle</h2>
+  <p class="lead rv">Tap each moment in the timeline.</p>
+  <div class="tl rv" id="tl"></div>
+  <div class="g2 rv" style="margin-top:1rem" id="lf"></div>
+</section>
+
+<section id="D">
+  <div class="k">D</div><h2>Dangers & Survival</h2>
+  <div id="dg"></div>
+  <div class="card rv"><b>⛰️ Altitude meter</b><p class="lead" style="margin:.3rem 0 0;font-size:.82rem">Drag to see how much oxygen is left in the air.</p>
+    <input type="range" id="alt" min="0" max="6000" step="100" value="2400"><div class="big" id="ox"></div><div class="lead" id="ol" style="margin:0"></div></div>
+  <div class="card rv"><b>🎒 Packing checklist</b><div class="prog"><b id="pb"></b></div><div id="pk"></div><p class="lead" id="pt" style="margin:.6rem 0 0"></p></div>
+</section>
+
+<section id="Q">
+  <div class="k">?</div><h2>Quiz</h2>
+  <div class="card" id="qz"></div>
+</section>
+</main>
+<footer>🌌 Atacama · Made for the “Deserts of the World” project</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+// reveal + active nav
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.15});
+const reveal=()=>document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+const secs=[...document.querySelectorAll("section")];
+function nav(){let c=secs[0].id;secs.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.4)c=s.id});document.querySelectorAll("#nv a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")=="#"+c));
+$("mts").style.transform="translateY("+Math.min(scrollY*.18,60)+"px)"}
+addEventListener("scroll",nav,{passive:true});
+function tabs(seg,fn,arr){$(seg).innerHTML=arr.map((a,i)=>`<button data-i="${i}" class="${i?"":"on"}">${a[0]}</button>`).join("");const sel=i=>{[...$(seg).children].forEach((b,k)=>b.classList.toggle("on",k==i));fn(arr[i])};$(seg).onclick=e=>{const b=e.target.closest("button");if(b)sel(+b.dataset.i)};sel(0)}
+// A
+const R=[["Atacama (driest areas)",1],["Sahara (average)",100],["London",600],["New York",1200],["Tropical rainforest",2000]];
+$("rain").innerHTML=R.map(r=>`<div class="bar"><span><i style="all:unset">${r[0]}</i><i style="all:unset">~${r[1].toLocaleString()} mm</i></span><i><b style="--w:${Math.max(r[1]/20,.8)}%"></b></i></div>`).join("");
+tabs("lt",a=>$("lb").textContent=a[1],[["🌙 Moon Valley","Valle de la Luna: wind-carved ridges, sand dunes and salt crusts that look like another planet."],["🧂 Salt flat","Salar de Atacama: a huge white plain of salt crust, home to flamingos and rich in lithium."],["♨️ El Tatio","One of the highest geyser fields in the world, at about 4,300 m. Steam bursts out at sunrise."],["🌋 Volcanoes","Cone-shaped Andean volcanoes such as Licancabur (5,920 m) rise above the desert."],["🌊 Coast","Cliffs and fishing towns where the fog (camanchaca) brings tiny amounts of moisture."]]);
+tabs("ct",a=>$("cb").innerHTML=`<div><small>Day</small><b>${a[1]}</b></div><div><small>Night</small><b>${a[2]}</b></div>`,[["Coast","~20°C","~14°C"],["San Pedro (2,400 m)","~25°C","~2°C"],["El Tatio (4,300 m)","~15°C","~-10°C"]]);
+// B
+const card=(id,A)=>{$(id).innerHTML=A.map(f=>`<button><span class="e">${f[0]}</span><b>${f[1]}</b><p class="s">Tap to see how it survives</p><p class="h">${f[2]}</p></button>`).join("");$(id).onclick=e=>{const b=e.target.closest("button");if(b)b.classList.toggle("on")}};
+card("an",[["🦙","Vicuña","A wild relative of the llama. Thick fine wool keeps it warm at night, and it grazes sparse grass on the highlands."],["🦩","Andean flamingo","Feeds on tiny algae in salty lagoons and filters food from the water with its beak."],["🦊","Culpeo fox","Hunts rodents and birds mostly at dawn and dusk, and needs little water."],["🐭","Viscacha","A rabbit-like rodent that hides among rocks and gets water from plants."],["🐧","Humboldt penguin","Lives on the Pacific coast, where the cold Humboldt current is full of fish."],["🦎","Liolaemus lizard","Basks in the sun to warm up, then shelters in burrows to avoid the heat and the cold nights."]]);
+card("pl",[["🌳","Tamarugo tree","Very deep roots reach groundwater, and its leaves can absorb water from fog."],["🌵","Cardón cactus","Stores water in its thick stem, and sharp spines cut water loss and protect it."],["🟢","Llareta","A dense, slow-growing cushion plant that keeps heat in and resists wind and cold."],["🌸","Flowering desert","After rare heavy rains, seeds that waited for years burst into pink and purple flowers."]]);
+// C
+const T=[["~10,000 years ago","First people","The first people arrived in the area, hunting and gathering. Later groups farmed in oases and fished on the coast."],["Before 1500","Atacameño (Lickanantay)","The Lickanantay built irrigated terraces and villages around oases like San Pedro de Atacama and traded with llama caravans."],["1500s","Inca & Spanish","The Inca Empire, then Spain, took control of the region and mined silver and other minerals."],["Late 1800s","Nitrate boom","After the War of the Pacific (1879–84) Chile gained the region. Mining towns grew around saltpeter. Humberstone is now a UNESCO site."],["Today","Copper, lithium & stars","Chile is a top copper producer and lithium is mined on the salt flats. Clear skies host giant observatories, and tourism is growing."]];
+$("tl").innerHTML=T.map(t=>`<button><small>${t[0]}</small><b>${t[1]}</b><p>${t[2]}</p></button>`).join("");
+$("tl").onclick=e=>{const b=e.target.closest("button");if(b)b.classList.toggle("on")};
+$("lf").innerHTML=[["🏠 Homes","Adobe (mud-brick) houses with thick walls and straw roofs."],["🧥 Clothing","Wool ponchos, hats and layers for hot days and freezing nights."],["🍲 Food","Quinoa, potatoes, corn, beans, llama meat and herbal teas."],["🚚 Transport","Llama caravans in the past; trucks, buses and 4×4 vehicles now."],["💼 Work","Mining, tourism, astronomy, fishing on the coast and farming at oases."],["🏙️ Towns","Antofagasta, Calama, Iquique, Arica and San Pedro de Atacama."]].map(x=>`<div><b>${x[0]}</b>${x[1]}</div>`).join("");
+// D
+$("dg").innerHTML=[["⛰️","Altitude sickness",5,"Headache, nausea and dizziness above ~2,500 m. Rest, drink water and go up slowly."],["☀️","Extreme UV & dehydration",5,"Very high UV and dry air. You can burn quickly and lose water without noticing."],["🥶","Freezing nights",4,"Temperatures can drop below 0°C once the sun sets, especially at altitude."],["🧭","Getting lost / no services",4,"Long empty roads and little signal. Vehicle trouble can become serious."],["🌋","Quakes, geysers & mines",3,"Chile has frequent earthquakes. Geyser water is scalding, and some border areas have marked minefields: stay on marked roads."],["🕷️","Scorpions & spiders",2,"Few dangerous animals. Shake out shoes, and don't touch wildlife or unfamiliar plants."]].map(r=>`<button class="risk rv" onclick="this.classList.toggle('on')"><span class="ic">${r[0]}</span><div style="flex:1"><b>${r[1]}</b><div class="lv" style="width:${r[2]*20}%"></div><p>${r[3]}</p></div></button>`).join("");
+function ox(){const h=+$("alt").value,o=Math.round(100*Math.exp(-h/8400));$("ox").textContent=h.toLocaleString()+" m · "+o+"%";$("ol").textContent=h<2000?"Sea-level feel. No altitude problems.":h<3000?"San Pedro height: mild effects possible.":h<4500?"El Tatio height: headaches likely. Acclimatize first.":"Very thin air: serious risk without acclimatization."}
+$("alt").oninput=ox;ox();
+const P=["3+ litres of water per person per day","SPF 50 sunscreen, hat & sunglasses","Warm layers for freezing nights","Offline maps, plus tell someone your route","Full fuel tank and a spare tyre","Rest 1–2 days to acclimatize before going high","First-aid kit and altitude medicine advice from a doctor"];
+$("pk").innerHTML=P.map(p=>`<button class="pk"><i>✓</i>${p}</button>`).join("");
+$("pk").onclick=e=>{const b=e.target.closest(".pk");if(!b)return;b.classList.toggle("on");const n=document.querySelectorAll(".pk.on").length;$("pb").style.width=(n/P.length*100)+"%";$("pt").textContent=n+" / "+P.length+(n==P.length?" · You're ready for Atacama!":"")};$("pt").textContent="0 / "+P.length;
+// Quiz
+const Q=[["In which country is most of the Atacama Desert?",["Peru","Chile","Mexico","Spain"],1],["Why is Atacama so dry?",["No wind","Mountains block moisture on both sides","Too many rivers","It is near the equator only"],1],["What does the tamarugo tree do?",["Eats insects","Absorbs fog and uses deep roots","Floats on water","Grows only at night"],1],["Which people are native to the San Pedro oases?",["Lickanantay (Atacameño)","Maasai","Inuit","Tuareg"],0],["What is the biggest altitude danger?",["Snow blindness","Altitude sickness","Sand dunes","Floods"],1],["What should you do if your vehicle breaks down?",["Walk away","Stay with it and signal for help","Hide in a cave","Drive faster"],1]];
+let qi=0,sc=0;
+function rq(){if(qi>=Q.length){$("qz").innerHTML=`<h3 style="text-align:center;font-size:2.2rem">${sc} / ${Q.length}</h3><p class="lead" style="text-align:center">${sc>=5?"Stellar! 🌌":"Scroll up and try again 🏜️"}</p><button class="cta" style="display:block;margin:auto" onclick="qi=0;sc=0;rq()">↺ Restart</button>`;return}
+const q=Q[qi];$("qz").innerHTML=`<small class="lead">QUESTION ${qi+1}/${Q.length}</small><p style="font-weight:700;margin:.3rem 0 .7rem">${q[0]}</p>`+q[1].map((o,i)=>`<button class="opt" onclick="aq(${i})">${o}</button>`).join("")}
+function aq(i){const q=Q[qi];[...document.querySelectorAll("#qz .opt")].forEach((b,k)=>{b.disabled=true;if(k==q[2])b.classList.add("c");else if(k==i)b.classList.add("w")});if(i==q[2])sc++;setTimeout(()=>{qi++;rq()},850)}
+rq();reveal();nav();
+// Starry sky
+(function(){const c=$("sky"),x=c.getContext("2d");let W,H;const S=[];const rs=()=>{W=c.width=innerWidth;H=c.height=innerHeight};rs();addEventListener("resize",rs);
+for(let i=0;i<150;i++)S.push({x:Math.random(),y:Math.random(),r:Math.random()*1.4+.3,p:Math.random()*6});
+const still=matchMedia("(prefers-reduced-motion:reduce)").matches;let sh=null;
+(function f(t){x.clearRect(0,0,W,H);for(const s of S){x.globalAlpha=.4+.6*Math.abs(Math.sin(t/1200+s.p));x.fillStyle="#fff";x.beginPath();x.arc(s.x*W,s.y*H,s.r,0,6.3);x.fill()}
+if(!still){if(!sh&&Math.random()<.004)sh={x:Math.random()*W*.7,y:Math.random()*H*.4,l:0};if(sh){x.globalAlpha=1-sh.l/40;x.strokeStyle="#fff";x.lineWidth=1.5;x.beginPath();x.moveTo(sh.x+sh.l*6,sh.y+sh.l*3);x.lineTo(sh.x+sh.l*6+40,sh.y+sh.l*3+20);x.stroke();if(++sh.l>40)sh=null}requestAnimationFrame(f)}})(0)})();
+</script></body></html>
